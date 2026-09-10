@@ -1,0 +1,693 @@
+{
+  "workspace": {
+    "name": "Acme Studio",
+    "plan": "Pro",
+    "user": {
+      "name": "Haroon Ahmed",
+      "email": "haroon@explainerai.app",
+      "role": "Product Lead",
+      "initials": "HA"
+    },
+    "stats": {
+      "minutesRendered": 148,
+      "evidenceAnchors": 1236,
+      "avgGroundingScore": 0.93,
+      "hoursSaved": 96
+    }
+  },
+  "pipelineStages": [
+    { "id": "explore", "label": "Exploring application", "detail": "Authenticating and crawling reachable surfaces" },
+    { "id": "discover", "label": "Discovering workflows", "detail": "Clustering interaction traces into candidate journeys" },
+    { "id": "rank", "label": "Ranking workflows", "detail": "Scoring candidates by explanatory value and reach" },
+    { "id": "script", "label": "Generating script", "detail": "Writing narration and binding every claim to evidence" },
+    { "id": "compose", "label": "Composing video", "detail": "Rendering captures, captions and voice-over into MP4" }
+  ],
+  "projects": [
+    {
+      "id": "prj-flowdesk",
+      "name": "FlowDesk",
+      "url": "https://app.flowdesk.io",
+      "tagline": "Project & sprint management for product teams",
+      "status": "completed",
+      "accent": "indigo",
+      "initials": "FD",
+      "createdAt": "2026-08-28T09:12:00Z",
+      "updatedAt": "2026-08-28T09:41:00Z",
+      "videoDuration": "1:24",
+      "workflowsCount": 5,
+      "pagesExplored": 37,
+      "evidenceAnchors": 214,
+      "resolution": "1920 × 1080",
+      "audience": "New users",
+      "focusAreas": ["Onboarding", "Core features", "Reporting"],
+      "summary": "ExplainerAI explored 37 pages of FlowDesk, isolated five workflows that carry the product's core value, and narrated the top-ranked path end to end. Every claim in the script is anchored to a DOM element captured during exploration.",
+      "videoUrl": "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4",
+      "workflows": [
+        {
+          "id": "wf-fd-1",
+          "title": "Create Project → Add Tasks → Assign Owner",
+          "description": "The canonical first-run path: a new user lands on an empty workspace, spins up their first project, fills it with tasks and hands ownership to a teammate.",
+          "tags": ["Onboarding", "Core Feature"],
+          "score": 0.94,
+          "featureCoverage": "Projects, Tasks, Assignments",
+          "estimatedDuration": "0:32",
+          "reach": "Touched by 91% of new accounts",
+          "steps": [
+            { "n": 1, "action": "Click the \"New Project\" button on the dashboard", "element": "Button labeled \"New Project\"", "evidence": "header > button[data-testid=\"new-project\"]", "duration": "0:04" },
+            { "n": 2, "action": "Type a project name and pick a workspace colour", "element": "Text input \"Project name\" inside Create Project modal", "evidence": "form#create-project input[name=\"title\"]", "duration": "0:06" },
+            { "n": 3, "action": "Confirm creation and land on the empty project board", "element": "Primary button \"Create project\"", "evidence": "form#create-project button[type=\"submit\"]", "duration": "0:05" },
+            { "n": 4, "action": "Add three tasks inline from the To-do column", "element": "Inline composer \"Add a task\"", "evidence": "section[data-column=\"todo\"] .task-composer", "duration": "0:09" },
+            { "n": 5, "action": "Open a task and assign it to a teammate from the owner picker", "element": "Avatar dropdown \"Assignee\"", "evidence": "aside.task-detail button[aria-label=\"Assignee\"]", "duration": "0:08" }
+          ]
+        },
+        {
+          "id": "wf-fd-2",
+          "title": "Invite Teammate → Set Role Permissions",
+          "description": "Admin path covering seat invitation, role selection and the permission matrix that gates billing and workspace settings.",
+          "tags": ["Admin", "Collaboration"],
+          "score": 0.88,
+          "featureCoverage": "Members, Roles, Permissions",
+          "estimatedDuration": "0:26",
+          "reach": "Touched by 64% of new accounts",
+          "steps": [
+            { "n": 1, "action": "Open workspace settings from the avatar menu", "element": "Menu item \"Workspace settings\"", "evidence": "nav [data-menu=\"profile\"] a[href=\"/settings\"]", "duration": "0:04" },
+            { "n": 2, "action": "Move to the Members tab and click Invite people", "element": "Button labeled \"Invite people\"", "evidence": "section#members button.invite", "duration": "0:05" },
+            { "n": 3, "action": "Enter an email address and choose the Editor role", "element": "Role select with options Viewer / Editor / Admin", "evidence": "form.invite select[name=\"role\"]", "duration": "0:08" },
+            { "n": 4, "action": "Send the invite and observe the pending state in the member list", "element": "Status pill \"Pending\"", "evidence": "table.members tr td .status-pill", "duration": "0:05" }
+          ]
+        },
+        {
+          "id": "wf-fd-3",
+          "title": "Build a Sprint Board → Drag Tasks Across Columns",
+          "description": "Demonstrates the drag-and-drop board, WIP limits and how status changes propagate to the sprint burndown in real time.",
+          "tags": ["Core Feature"],
+          "score": 0.85,
+          "featureCoverage": "Sprints, Board, Burndown",
+          "estimatedDuration": "0:30",
+          "reach": "Touched by 78% of active teams",
+          "steps": [
+            { "n": 1, "action": "Switch the project view from List to Board", "element": "Segmented control option \"Board\"", "evidence": "div.view-switcher button[value=\"board\"]", "duration": "0:04" },
+            { "n": 2, "action": "Start a sprint from the board toolbar", "element": "Button labeled \"Start sprint\"", "evidence": "div.board-toolbar button.start-sprint", "duration": "0:06" },
+            { "n": 3, "action": "Drag a task from To-do into In progress", "element": "Draggable card in column \"To-do\"", "evidence": "[data-column=\"todo\"] [draggable=\"true\"]", "duration": "0:10" },
+            { "n": 4, "action": "Watch the burndown chart update in the sprint panel", "element": "Chart canvas \"Sprint burndown\"", "evidence": "aside.sprint-panel canvas#burndown", "duration": "0:10" }
+          ]
+        },
+        {
+          "id": "wf-fd-4",
+          "title": "Generate Weekly Progress Report → Export CSV",
+          "description": "Reporting path that produces a shareable weekly digest and exports the underlying rows for finance and leadership review.",
+          "tags": ["Reporting", "Export"],
+          "score": 0.79,
+          "featureCoverage": "Reports, Filters, Export",
+          "estimatedDuration": "0:22",
+          "reach": "Touched by 41% of active teams",
+          "steps": [
+            { "n": 1, "action": "Open Reports from the primary navigation", "element": "Nav link \"Reports\"", "evidence": "nav a[href=\"/reports\"]", "duration": "0:03" },
+            { "n": 2, "action": "Select the Weekly progress template and set the date range", "element": "Template card \"Weekly progress\"", "evidence": "ul.templates li[data-id=\"weekly\"]", "duration": "0:07" },
+            { "n": 3, "action": "Click Export and choose CSV", "element": "Export button on the Reports page", "evidence": "header.report-header button.export", "duration": "0:06" },
+            { "n": 4, "action": "Confirm the download toast appears", "element": "Toast \"Your export is ready\"", "evidence": "div[role=\"status\"].toast", "duration": "0:06" }
+          ]
+        },
+        {
+          "id": "wf-fd-5",
+          "title": "Connect Slack → Configure Notifications",
+          "description": "Integration path showing the OAuth handshake and the per-event notification matrix that follows it.",
+          "tags": ["Integrations", "Admin"],
+          "score": 0.71,
+          "featureCoverage": "Integrations, Notifications",
+          "estimatedDuration": "0:24",
+          "reach": "Touched by 33% of active teams",
+          "steps": [
+            { "n": 1, "action": "Open the Integrations directory from settings", "element": "Tab labeled \"Integrations\"", "evidence": "nav.settings-tabs a[href=\"/settings/integrations\"]", "duration": "0:05" },
+            { "n": 2, "action": "Click Connect on the Slack card", "element": "Card action button \"Connect\"", "evidence": "li[data-app=\"slack\"] button.connect", "duration": "0:06" },
+            { "n": 3, "action": "Approve the OAuth scopes and return to ExplainerAI", "element": "Consent screen \"Allow access\"", "evidence": "external:slack.com/oauth/authorize", "duration": "0:07" },
+            { "n": 4, "action": "Toggle notifications for task assignment and sprint close", "element": "Switch \"Task assigned to me\"", "evidence": "fieldset.notifications input[type=\"checkbox\"]", "duration": "0:06" }
+          ]
+        }
+      ],
+      "script": {
+        "tone": "Friendly",
+        "language": "English",
+        "wordCount": 132,
+        "paragraphs": [
+          {
+            "id": "p1",
+            "parts": [
+              { "text": "FlowDesk is where product teams turn a blank workspace into a shipping plan. You start on the dashboard and click " },
+              { "text": "New Project", "anchor": { "label": "Button labeled \"New Project\"", "source": "Dashboard · top-right toolbar", "confidence": 0.98, "workflowId": "wf-fd-1", "step": 1 } },
+              { "text": " — name it, pick a colour, and you land straight on an empty board." }
+            ]
+          },
+          {
+            "id": "p2",
+            "parts": [
+              { "text": "Tasks go in from the " },
+              { "text": "inline composer", "anchor": { "label": "Inline composer \"Add a task\"", "source": "Project board · To-do column", "confidence": 0.95, "workflowId": "wf-fd-1", "step": 4 } },
+              { "text": ", so you never lose your place, and each one gets an owner from the " },
+              { "text": "assignee picker", "anchor": { "label": "Avatar dropdown \"Assignee\"", "source": "Task detail panel", "confidence": 0.93, "workflowId": "wf-fd-1", "step": 5 } },
+              { "text": "." }
+            ]
+          },
+          {
+            "id": "p3",
+            "parts": [
+              { "text": "When the plan is ready, switch to the board and " },
+              { "text": "start a sprint", "anchor": { "label": "Button labeled \"Start sprint\"", "source": "Board toolbar", "confidence": 0.91, "workflowId": "wf-fd-3", "step": 2 } },
+              { "text": ". Dragging a card into In progress updates the " },
+              { "text": "burndown chart", "anchor": { "label": "Chart canvas \"Sprint burndown\"", "source": "Sprint panel", "confidence": 0.89, "workflowId": "wf-fd-3", "step": 4 } },
+              { "text": " immediately — no status meeting required." }
+            ]
+          },
+          {
+            "id": "p4",
+            "parts": [
+              { "text": "At the end of the week, the Reports tab builds the digest for you, and the " },
+              { "text": "Export button", "anchor": { "label": "Export button on the Reports page", "source": "Reports · header", "confidence": 0.96, "workflowId": "wf-fd-4", "step": 3 } },
+              { "text": " hands finance the raw rows. That is FlowDesk — plan, ship, and prove it in one place." }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "prj-helixpay",
+      "name": "HelixPay",
+      "url": "https://dashboard.helixpay.com",
+      "tagline": "Payments, subscriptions and payouts for modern commerce",
+      "status": "completed",
+      "accent": "emerald",
+      "initials": "HP",
+      "createdAt": "2026-08-21T14:35:00Z",
+      "updatedAt": "2026-08-21T15:02:00Z",
+      "videoDuration": "1:12",
+      "workflowsCount": 4,
+      "pagesExplored": 29,
+      "evidenceAnchors": 168,
+      "resolution": "1920 × 1080",
+      "audience": "New users",
+      "focusAreas": ["Core features", "Admin"],
+      "summary": "A payments dashboard is dense with irreversible actions, so exploration ran in read-only mode. ExplainerAI ranked the payment-link flow highest: it is the shortest path from signup to first revenue.",
+      "videoUrl": "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
+      "workflows": [
+        {
+          "id": "wf-hp-1",
+          "title": "Create Payment Link → Share with Customer",
+          "description": "Fastest route to a first transaction: build a hosted checkout link, brand it, and copy it to the clipboard.",
+          "tags": ["Onboarding", "Core Feature"],
+          "score": 0.92,
+          "featureCoverage": "Payment links, Checkout, Branding",
+          "estimatedDuration": "0:28",
+          "reach": "Touched by 88% of new accounts",
+          "steps": [
+            { "n": 1, "action": "Click \"Create\" and choose Payment link", "element": "Dropdown item \"Payment link\"", "evidence": "header button.create + ul li[data-type=\"link\"]", "duration": "0:05" },
+            { "n": 2, "action": "Set a product name, amount and currency", "element": "Amount input with currency selector", "evidence": "form.link-builder input[name=\"amount\"]", "duration": "0:08" },
+            { "n": 3, "action": "Preview the hosted checkout page in the side panel", "element": "Live preview iframe", "evidence": "aside.preview iframe[title=\"Checkout preview\"]", "duration": "0:07" },
+            { "n": 4, "action": "Copy the link and observe the confirmation toast", "element": "Button labeled \"Copy link\"", "evidence": "div.link-footer button.copy", "duration": "0:08" }
+          ]
+        },
+        {
+          "id": "wf-hp-2",
+          "title": "Set Up a Recurring Subscription Plan",
+          "description": "Billing configuration covering interval, trial period and proration behaviour when a customer upgrades mid-cycle.",
+          "tags": ["Core Feature", "Billing"],
+          "score": 0.86,
+          "featureCoverage": "Plans, Trials, Proration",
+          "estimatedDuration": "0:30",
+          "reach": "Touched by 57% of accounts",
+          "steps": [
+            { "n": 1, "action": "Open Products and click New plan", "element": "Button labeled \"New plan\"", "evidence": "section#products button.new-plan", "duration": "0:05" },
+            { "n": 2, "action": "Choose a monthly interval and add a 14-day trial", "element": "Radio group \"Billing interval\"", "evidence": "fieldset.interval input[value=\"monthly\"]", "duration": "0:10" },
+            { "n": 3, "action": "Enable prorated upgrades in advanced settings", "element": "Switch \"Prorate on upgrade\"", "evidence": "details.advanced input#prorate", "duration": "0:08" },
+            { "n": 4, "action": "Save the plan and see it appear in the pricing table", "element": "Row in table \"Active plans\"", "evidence": "table.plans tbody tr:first-child", "duration": "0:07" }
+          ]
+        },
+        {
+          "id": "wf-hp-3",
+          "title": "Reconcile Payout → Download Statement",
+          "description": "Finance path that matches a bank payout to its underlying charges and refunds, then exports a signed statement.",
+          "tags": ["Reporting", "Admin"],
+          "score": 0.8,
+          "featureCoverage": "Payouts, Reconciliation, Statements",
+          "estimatedDuration": "0:26",
+          "reach": "Touched by 39% of accounts",
+          "steps": [
+            { "n": 1, "action": "Open Balances → Payouts and select the latest payout", "element": "Table row with status \"Paid\"", "evidence": "table.payouts tr[data-status=\"paid\"]", "duration": "0:06" },
+            { "n": 2, "action": "Expand the breakdown of charges, refunds and fees", "element": "Accordion \"Payout breakdown\"", "evidence": "section.breakdown button[aria-expanded]", "duration": "0:08" },
+            { "n": 3, "action": "Download the statement as PDF", "element": "Button labeled \"Download statement\"", "evidence": "header.payout button.download", "duration": "0:06" },
+            { "n": 4, "action": "Verify the reconciliation banner turns green", "element": "Banner \"Fully reconciled\"", "evidence": "div.banner.success", "duration": "0:06" }
+          ]
+        },
+        {
+          "id": "wf-hp-4",
+          "title": "Add Team Member with Refund Permissions",
+          "description": "Least-privilege admin flow: invite a support agent and grant refund rights without exposing payout settings.",
+          "tags": ["Admin", "Security"],
+          "score": 0.74,
+          "featureCoverage": "Team, Roles, Audit log",
+          "estimatedDuration": "0:20",
+          "reach": "Touched by 28% of accounts",
+          "steps": [
+            { "n": 1, "action": "Open Settings → Team and click Invite member", "element": "Button labeled \"Invite member\"", "evidence": "section#team button.invite", "duration": "0:05" },
+            { "n": 2, "action": "Pick the Support role and tick Issue refunds", "element": "Permission checkbox \"Issue refunds\"", "evidence": "form.invite input[name=\"perm.refund\"]", "duration": "0:08" },
+            { "n": 3, "action": "Send the invite and open the audit log entry", "element": "Audit log row \"Member invited\"", "evidence": "table.audit tr:first-child", "duration": "0:07" }
+          ]
+        }
+      ],
+      "script": {
+        "tone": "Friendly",
+        "language": "English",
+        "wordCount": 108,
+        "paragraphs": [
+          {
+            "id": "p1",
+            "parts": [
+              { "text": "HelixPay gets you to your first payment without touching a line of code. From the dashboard, hit " },
+              { "text": "Create → Payment link", "anchor": { "label": "Dropdown item \"Payment link\"", "source": "Dashboard · Create menu", "confidence": 0.97, "workflowId": "wf-hp-1", "step": 1 } },
+              { "text": ", set an amount, and a hosted checkout page is built for you." }
+            ]
+          },
+          {
+            "id": "p2",
+            "parts": [
+              { "text": "The " },
+              { "text": "live preview", "anchor": { "label": "Live preview iframe", "source": "Link builder · side panel", "confidence": 0.94, "workflowId": "wf-hp-1", "step": 3 } },
+              { "text": " shows exactly what your customer sees, and one click copies the link straight to your clipboard." }
+            ]
+          },
+          {
+            "id": "p3",
+            "parts": [
+              { "text": "Recurring revenue works the same way: create a plan, choose an interval, and switch on " },
+              { "text": "prorated upgrades", "anchor": { "label": "Switch \"Prorate on upgrade\"", "source": "Plan builder · advanced settings", "confidence": 0.9, "workflowId": "wf-hp-2", "step": 3 } },
+              { "text": " so mid-cycle changes bill themselves correctly." }
+            ]
+          },
+          {
+            "id": "p4",
+            "parts": [
+              { "text": "And when money lands in your bank, the payout view reconciles every charge and fee, then hands you a " },
+              { "text": "signed statement", "anchor": { "label": "Button labeled \"Download statement\"", "source": "Payout detail · header", "confidence": 0.92, "workflowId": "wf-hp-3", "step": 3 } },
+              { "text": " your accountant will actually accept." }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "prj-northstar",
+      "name": "NorthStar CRM",
+      "url": "https://northstar-crm.app",
+      "tagline": "Pipeline, sequences and lead scoring for revenue teams",
+      "status": "completed",
+      "accent": "sky",
+      "initials": "NS",
+      "createdAt": "2026-08-14T11:05:00Z",
+      "updatedAt": "2026-08-14T11:38:00Z",
+      "videoDuration": "1:36",
+      "workflowsCount": 4,
+      "pagesExplored": 42,
+      "evidenceAnchors": 231,
+      "resolution": "1920 × 1080",
+      "audience": "Power users",
+      "focusAreas": ["Core features", "Reporting"],
+      "summary": "NorthStar has a wide surface area, so ranking favoured workflows that chain three or more features together. The CSV import path won because it is both the first thing every team does and the one most often abandoned.",
+      "videoUrl": "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
+      "workflows": [
+        {
+          "id": "wf-ns-1",
+          "title": "Import Leads from CSV → Map Fields",
+          "description": "Bulk import with column mapping, duplicate detection and a dry-run preview before anything is written.",
+          "tags": ["Onboarding", "Data"],
+          "score": 0.91,
+          "featureCoverage": "Import, Field mapping, Dedupe",
+          "estimatedDuration": "0:34",
+          "reach": "Touched by 84% of new accounts",
+          "steps": [
+            { "n": 1, "action": "Open Leads and click Import", "element": "Button labeled \"Import\"", "evidence": "section#leads button.import", "duration": "0:05" },
+            { "n": 2, "action": "Drop a CSV file into the upload zone", "element": "Dropzone \"Drag your CSV here\"", "evidence": "div.dropzone[data-accept=\"text/csv\"]", "duration": "0:08" },
+            { "n": 3, "action": "Map spreadsheet columns to CRM fields", "element": "Mapping table with source → destination selects", "evidence": "table.mapping select[name^=\"col_\"]", "duration": "0:12" },
+            { "n": 4, "action": "Review the dry-run summary and confirm the import", "element": "Summary card \"312 new · 18 duplicates\"", "evidence": "div.dry-run .summary", "duration": "0:09" }
+          ]
+        },
+        {
+          "id": "wf-ns-2",
+          "title": "Build Deal Pipeline → Move Deal Stages",
+          "description": "Configure a custom pipeline, then advance a deal through stages and watch the forecast recalculate.",
+          "tags": ["Core Feature", "Sales"],
+          "score": 0.87,
+          "featureCoverage": "Pipelines, Deals, Forecast",
+          "estimatedDuration": "0:30",
+          "reach": "Touched by 76% of accounts",
+          "steps": [
+            { "n": 1, "action": "Open Pipelines and click Edit stages", "element": "Link \"Edit stages\"", "evidence": "header.pipeline a.edit-stages", "duration": "0:05" },
+            { "n": 2, "action": "Rename a stage and set its win probability", "element": "Probability input inside the stage editor", "evidence": "form.stage-editor input[name=\"probability\"]", "duration": "0:09" },
+            { "n": 3, "action": "Drag a deal card into Negotiation", "element": "Deal card in column \"Proposal\"", "evidence": "[data-stage=\"proposal\"] article.deal-card", "duration": "0:08" },
+            { "n": 4, "action": "Confirm the forecast widget updates", "element": "Widget \"Weighted forecast\"", "evidence": "aside.forecast [data-metric=\"weighted\"]", "duration": "0:08" }
+          ]
+        },
+        {
+          "id": "wf-ns-3",
+          "title": "Create Email Sequence → Schedule Follow-ups",
+          "description": "Multi-step outreach with delays, branch-on-reply logic and a send-window guard for time zones.",
+          "tags": ["Core Feature", "Automation"],
+          "score": 0.82,
+          "featureCoverage": "Sequences, Templates, Scheduling",
+          "estimatedDuration": "0:32",
+          "reach": "Touched by 52% of accounts",
+          "steps": [
+            { "n": 1, "action": "Open Sequences and click New sequence", "element": "Button labeled \"New sequence\"", "evidence": "section#sequences button.new", "duration": "0:05" },
+            { "n": 2, "action": "Write the first email from a saved template", "element": "Template picker \"Cold intro\"", "evidence": "div.step-editor [data-template=\"cold-intro\"]", "duration": "0:10" },
+            { "n": 3, "action": "Add a three-day delay and a follow-up step", "element": "Delay node \"Wait 3 days\"", "evidence": "ol.sequence-steps li.delay", "duration": "0:09" },
+            { "n": 4, "action": "Set the send window and activate the sequence", "element": "Toggle \"Only send 9am–5pm local\"", "evidence": "fieldset.schedule input#send-window", "duration": "0:08" }
+          ]
+        },
+        {
+          "id": "wf-ns-4",
+          "title": "Configure Lead Scoring Rules",
+          "description": "Weighted scoring across firmographics and behaviour, with a live preview of how the current database re-ranks.",
+          "tags": ["Admin", "Reporting"],
+          "score": 0.76,
+          "featureCoverage": "Scoring, Segments, Preview",
+          "estimatedDuration": "0:28",
+          "reach": "Touched by 31% of accounts",
+          "steps": [
+            { "n": 1, "action": "Open Settings → Lead scoring", "element": "Settings nav item \"Lead scoring\"", "evidence": "nav.settings a[href=\"/settings/scoring\"]", "duration": "0:05" },
+            { "n": 2, "action": "Add a rule that weights demo requests at +25", "element": "Rule builder row \"Event: demo_requested\"", "evidence": "table.rules tr[data-event=\"demo_requested\"]", "duration": "0:11" },
+            { "n": 3, "action": "Check the live re-ranking preview panel", "element": "Preview list \"Top scored leads\"", "evidence": "aside.preview ol.top-leads", "duration": "0:12" }
+          ]
+        }
+      ],
+      "script": {
+        "tone": "Formal",
+        "language": "English",
+        "wordCount": 116,
+        "paragraphs": [
+          {
+            "id": "p1",
+            "parts": [
+              { "text": "NorthStar CRM begins where your data already lives. Open Leads, choose " },
+              { "text": "Import", "anchor": { "label": "Button labeled \"Import\"", "source": "Leads · toolbar", "confidence": 0.96, "workflowId": "wf-ns-1", "step": 1 } },
+              { "text": ", and drop in a CSV. Columns are matched to fields automatically, and anything ambiguous is left for you to confirm." }
+            ]
+          },
+          {
+            "id": "p2",
+            "parts": [
+              { "text": "Before a single record is written, a " },
+              { "text": "dry-run summary", "anchor": { "label": "Summary card \"312 new · 18 duplicates\"", "source": "Import · dry-run step", "confidence": 0.93, "workflowId": "wf-ns-1", "step": 4 } },
+              { "text": " tells you what is new and what is a duplicate." }
+            ]
+          },
+          {
+            "id": "p3",
+            "parts": [
+              { "text": "Deals move by dragging them between stages, and because each stage carries a win probability, the " },
+              { "text": "weighted forecast", "anchor": { "label": "Widget \"Weighted forecast\"", "source": "Pipeline · forecast sidebar", "confidence": 0.9, "workflowId": "wf-ns-2", "step": 4 } },
+              { "text": " recalculates the moment you let go." }
+            ]
+          },
+          {
+            "id": "p4",
+            "parts": [
+              { "text": "Follow-up is automated the same way — a sequence with delays, reply branching, and a " },
+              { "text": "send window", "anchor": { "label": "Toggle \"Only send 9am–5pm local\"", "source": "Sequence · schedule", "confidence": 0.88, "workflowId": "wf-ns-3", "step": 4 } },
+              { "text": " that respects your prospect's local time." }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "prj-quantly",
+      "name": "Quantly Analytics",
+      "url": "https://app.quantly.io",
+      "tagline": "Product analytics with funnels and cohort retention",
+      "status": "processing",
+      "accent": "violet",
+      "initials": "QA",
+      "createdAt": "2026-09-10T08:47:00Z",
+      "updatedAt": "2026-09-10T08:52:00Z",
+      "videoDuration": "—",
+      "workflowsCount": 3,
+      "pagesExplored": 18,
+      "evidenceAnchors": 74,
+      "resolution": "—",
+      "audience": "Power users",
+      "focusAreas": ["Core features", "Reporting"],
+      "progress": 62,
+      "currentStage": "Ranking workflows",
+      "summary": "Exploration is still running. Three candidate workflows have been discovered so far; ranking will settle once the funnel builder has been traversed twice.",
+      "videoUrl": null,
+      "workflows": [
+        {
+          "id": "wf-qa-1",
+          "title": "Build a Conversion Funnel → Compare Segments",
+          "description": "Assemble a multi-step funnel from tracked events, then split it by acquisition channel to find the leak.",
+          "tags": ["Core Feature", "Reporting"],
+          "score": 0.89,
+          "featureCoverage": "Funnels, Segments, Events",
+          "estimatedDuration": "0:32",
+          "reach": "Candidate · pending final rank",
+          "steps": [
+            { "n": 1, "action": "Open Funnels and click New funnel", "element": "Button labeled \"New funnel\"", "evidence": "section#funnels button.new", "duration": "0:05" },
+            { "n": 2, "action": "Add signup, activation and purchase as steps", "element": "Event picker \"Add step\"", "evidence": "div.funnel-builder button.add-step", "duration": "0:11" },
+            { "n": 3, "action": "Split the funnel by acquisition channel", "element": "Breakdown select \"Compare by\"", "evidence": "header.funnel select[name=\"breakdown\"]", "duration": "0:08" }
+          ]
+        },
+        {
+          "id": "wf-qa-2",
+          "title": "Create a Retention Cohort → Export Chart",
+          "description": "Weekly cohort grid with a rolling retention curve and a PNG export for the investor update.",
+          "tags": ["Reporting"],
+          "score": 0.81,
+          "featureCoverage": "Cohorts, Retention, Export",
+          "estimatedDuration": "0:26",
+          "reach": "Candidate · pending final rank",
+          "steps": [
+            { "n": 1, "action": "Open Retention and pick a weekly grain", "element": "Segmented control option \"Weekly\"", "evidence": "div.grain-switcher button[value=\"weekly\"]", "duration": "0:06" },
+            { "n": 2, "action": "Choose the activation event as the cohort anchor", "element": "Select \"Cohort by event\"", "evidence": "form.cohort select[name=\"anchor\"]", "duration": "0:09" },
+            { "n": 3, "action": "Export the chart as PNG", "element": "Menu item \"Download PNG\"", "evidence": "div.chart-menu li[data-format=\"png\"]", "duration": "0:06" }
+          ]
+        },
+        {
+          "id": "wf-qa-3",
+          "title": "Set an Alert on a Metric Threshold",
+          "description": "Watch a metric and route a Slack alert when the seven-day average crosses a threshold.",
+          "tags": ["Automation", "Admin"],
+          "score": 0.72,
+          "featureCoverage": "Alerts, Thresholds, Slack",
+          "estimatedDuration": "0:22",
+          "reach": "Candidate · pending final rank",
+          "steps": [
+            { "n": 1, "action": "Open a saved metric and click Create alert", "element": "Button labeled \"Create alert\"", "evidence": "header.metric button.alert", "duration": "0:05" },
+            { "n": 2, "action": "Set the threshold and the comparison window", "element": "Threshold input with operator select", "evidence": "form.alert input[name=\"threshold\"]", "duration": "0:09" },
+            { "n": 3, "action": "Pick a Slack channel as the destination", "element": "Channel picker \"#growth\"", "evidence": "form.alert [data-channel=\"growth\"]", "duration": "0:08" }
+          ]
+        }
+      ],
+      "script": null
+    },
+    {
+      "id": "prj-shiftly",
+      "name": "Shiftly HR",
+      "url": "https://shiftly-hr.com/app",
+      "tagline": "Shift scheduling, time-off and payroll prep",
+      "status": "processing",
+      "accent": "amber",
+      "initials": "SH",
+      "createdAt": "2026-09-10T10:26:00Z",
+      "updatedAt": "2026-09-10T10:29:00Z",
+      "videoDuration": "—",
+      "workflowsCount": 1,
+      "pagesExplored": 6,
+      "evidenceAnchors": 19,
+      "resolution": "—",
+      "audience": "Admins",
+      "focusAreas": ["Onboarding", "Admin"],
+      "progress": 24,
+      "currentStage": "Discovering workflows",
+      "summary": "The crawler has authenticated and is mapping the scheduling surface. Workflow candidates will appear here as they are discovered.",
+      "videoUrl": null,
+      "workflows": [
+        {
+          "id": "wf-sh-1",
+          "title": "Publish a Weekly Schedule → Notify Staff",
+          "description": "Draft a week of shifts from a template, resolve conflicts, and publish with an automatic notification to every assigned employee.",
+          "tags": ["Core Feature", "Admin"],
+          "score": 0.9,
+          "featureCoverage": "Schedules, Templates, Notifications",
+          "estimatedDuration": "0:30",
+          "reach": "Candidate · pending final rank",
+          "steps": [
+            { "n": 1, "action": "Open the Schedule view for next week", "element": "Date range control \"Next week\"", "evidence": "header.schedule button.range-next", "duration": "0:05" },
+            { "n": 2, "action": "Apply the \"Standard week\" template", "element": "Menu item \"Apply template\"", "evidence": "div.schedule-menu li.apply-template", "duration": "0:08" },
+            { "n": 3, "action": "Resolve the flagged double-booking", "element": "Conflict badge on Thursday evening shift", "evidence": "[data-day=\"thu\"] .shift .conflict-badge", "duration": "0:09" },
+            { "n": 4, "action": "Publish the schedule and confirm notifications sent", "element": "Button labeled \"Publish schedule\"", "evidence": "footer.schedule button.publish", "duration": "0:08" }
+          ]
+        }
+      ],
+      "script": null
+    },
+    {
+      "id": "prj-vaultbase",
+      "name": "Vaultbase",
+      "url": "https://console.vaultbase.dev",
+      "tagline": "Managed Postgres with branching and point-in-time restore",
+      "status": "completed",
+      "accent": "rose",
+      "initials": "VB",
+      "createdAt": "2026-07-30T16:20:00Z",
+      "updatedAt": "2026-07-30T16:44:00Z",
+      "videoDuration": "0:58",
+      "workflowsCount": 3,
+      "pagesExplored": 24,
+      "evidenceAnchors": 121,
+      "resolution": "1280 × 720",
+      "audience": "Power users",
+      "focusAreas": ["Core features"],
+      "summary": "A developer console with a small but deep surface. Ranking preferred workflows that demonstrate the branching model, which is Vaultbase's genuine differentiator.",
+      "videoUrl": "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4",
+      "workflows": [
+        {
+          "id": "wf-vb-1",
+          "title": "Create a Database Branch → Run a Migration",
+          "description": "Fork production into an isolated branch, apply a schema migration, and diff the result before merging.",
+          "tags": ["Core Feature", "Developer"],
+          "score": 0.93,
+          "featureCoverage": "Branching, Migrations, Diff",
+          "estimatedDuration": "0:30",
+          "reach": "Touched by 81% of accounts",
+          "steps": [
+            { "n": 1, "action": "Click Branch on the production database card", "element": "Button labeled \"Branch\"", "evidence": "article.db-card[data-env=\"prod\"] button.branch", "duration": "0:05" },
+            { "n": 2, "action": "Name the branch and confirm the copy-on-write notice", "element": "Modal \"Create branch\"", "evidence": "dialog#create-branch input[name=\"name\"]", "duration": "0:08" },
+            { "n": 3, "action": "Run the pending migration from the console", "element": "Button labeled \"Run migration\"", "evidence": "section.migrations button.run", "duration": "0:09" },
+            { "n": 4, "action": "Open the schema diff against production", "element": "Tab labeled \"Diff\"", "evidence": "nav.branch-tabs a[href$=\"/diff\"]", "duration": "0:08" }
+          ]
+        },
+        {
+          "id": "wf-vb-2",
+          "title": "Point-in-Time Restore to a New Branch",
+          "description": "Pick a timestamp on the recovery timeline and materialise it as a fresh branch without touching production.",
+          "tags": ["Core Feature", "Recovery"],
+          "score": 0.84,
+          "featureCoverage": "PITR, Timeline, Branching",
+          "estimatedDuration": "0:24",
+          "reach": "Touched by 44% of accounts",
+          "steps": [
+            { "n": 1, "action": "Open the Backups tab and scrub the recovery timeline", "element": "Timeline slider \"Restore point\"", "evidence": "section#backups input[type=\"range\"]", "duration": "0:09" },
+            { "n": 2, "action": "Choose Restore to new branch", "element": "Menu item \"Restore to new branch\"", "evidence": "div.restore-menu li.to-branch", "duration": "0:07" },
+            { "n": 3, "action": "Watch the restore job stream its log lines", "element": "Log stream panel", "evidence": "pre.job-log[data-stream=\"restore\"]", "duration": "0:08" }
+          ]
+        },
+        {
+          "id": "wf-vb-3",
+          "title": "Rotate Connection Credentials",
+          "description": "Generate a new role, rotate the connection string and confirm the old credential is revoked in the audit trail.",
+          "tags": ["Admin", "Security"],
+          "score": 0.7,
+          "featureCoverage": "Roles, Credentials, Audit",
+          "estimatedDuration": "0:20",
+          "reach": "Touched by 26% of accounts",
+          "steps": [
+            { "n": 1, "action": "Open Connection settings and click Rotate", "element": "Button labeled \"Rotate credentials\"", "evidence": "section.connection button.rotate", "duration": "0:06" },
+            { "n": 2, "action": "Copy the new connection string", "element": "Masked field with copy affordance", "evidence": "div.secret input[readonly]", "duration": "0:07" },
+            { "n": 3, "action": "Confirm the revocation entry in the audit log", "element": "Audit row \"Credential revoked\"", "evidence": "table.audit tr[data-event=\"revoke\"]", "duration": "0:07" }
+          ]
+        }
+      ],
+      "script": {
+        "tone": "Formal",
+        "language": "English",
+        "wordCount": 94,
+        "paragraphs": [
+          {
+            "id": "p1",
+            "parts": [
+              { "text": "Vaultbase treats your database the way you already treat your code. On the production card, press " },
+              { "text": "Branch", "anchor": { "label": "Button labeled \"Branch\"", "source": "Console · production database card", "confidence": 0.97, "workflowId": "wf-vb-1", "step": 1 } },
+              { "text": ", and a copy-on-write fork is ready in seconds." }
+            ]
+          },
+          {
+            "id": "p2",
+            "parts": [
+              { "text": "Run your migration against the branch, then open the " },
+              { "text": "schema diff", "anchor": { "label": "Tab labeled \"Diff\"", "source": "Branch view · tabs", "confidence": 0.92, "workflowId": "wf-vb-1", "step": 4 } },
+              { "text": " to see exactly what would change in production before anything ships." }
+            ]
+          },
+          {
+            "id": "p3",
+            "parts": [
+              { "text": "If something does go wrong, scrub the " },
+              { "text": "recovery timeline", "anchor": { "label": "Timeline slider \"Restore point\"", "source": "Backups tab", "confidence": 0.89, "workflowId": "wf-vb-2", "step": 1 } },
+              { "text": " to any second in the retention window and restore it as a new branch — production stays untouched." }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "templates": [
+    {
+      "id": "tpl-onboarding",
+      "name": "First-run onboarding tour",
+      "description": "Signup to first value in under ninety seconds. Ranks activation workflows above everything else.",
+      "duration": "60–90s",
+      "audience": "New users",
+      "focusAreas": ["Onboarding", "Core features"],
+      "accent": "indigo",
+      "popularity": 92
+    },
+    {
+      "id": "tpl-feature",
+      "name": "Single feature deep dive",
+      "description": "One workflow, narrated slowly, with every interaction anchored to a captured element.",
+      "duration": "45–60s",
+      "audience": "Power users",
+      "focusAreas": ["Core features"],
+      "accent": "violet",
+      "popularity": 78
+    },
+    {
+      "id": "tpl-admin",
+      "name": "Admin & permissions walkthrough",
+      "description": "Roles, seats and the permission matrix — built for buyers who need to see governance.",
+      "duration": "60s",
+      "audience": "Admins",
+      "focusAreas": ["Admin"],
+      "accent": "sky",
+      "popularity": 64
+    },
+    {
+      "id": "tpl-release",
+      "name": "Release notes reel",
+      "description": "Diffs the surface against the previous crawl and narrates only what actually changed.",
+      "duration": "30–45s",
+      "audience": "Existing users",
+      "focusAreas": ["Core features", "Reporting"],
+      "accent": "emerald",
+      "popularity": 57
+    },
+    {
+      "id": "tpl-sales",
+      "name": "Sales demo leave-behind",
+      "description": "Buyer-facing narrative that leads with outcomes and keeps configuration in the background.",
+      "duration": "90s",
+      "audience": "Buyers",
+      "focusAreas": ["Core features", "Reporting"],
+      "accent": "amber",
+      "popularity": 71
+    },
+    {
+      "id": "tpl-support",
+      "name": "Support answer clip",
+      "description": "Takes one support question and produces the shortest grounded path that answers it.",
+      "duration": "20–30s",
+      "audience": "Existing users",
+      "focusAreas": ["Core features", "Admin"],
+      "accent": "rose",
+      "popularity": 48
+    }
+  ]
+}
