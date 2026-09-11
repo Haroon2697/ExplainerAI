@@ -1,9 +1,120 @@
 import { useRef, useState } from 'react'
-import { Link2 } from 'lucide-react'
+import { Link2, ArrowRight, CheckCircle2, Users, CreditCard, UserPlus, Lock } from 'lucide-react'
 import { EASE, gsap, prefersReducedMotion, useGSAP } from '@/lib/gsap'
 import { cn } from '@/lib/utils'
 
 type CardState = 'indigo' | 'violet' | 'emerald'
+
+// Workflow visualization components
+function OnboardingWorkflow() {
+  return (
+    <div className="space-y-3 p-3">
+      {/* Step 1 */}
+      <div className="flex items-start gap-2">
+        <div className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-indigo-400 text-xs font-bold text-white">1</div>
+        <div className="flex-1">
+          <div className="h-1.5 w-20 rounded bg-indigo-300/60" />
+          <div className="mt-1 h-1 w-16 rounded bg-indigo-200/40" />
+        </div>
+      </div>
+      {/* Arrow */}
+      <div className="flex justify-center text-indigo-400/50">
+        <ArrowRight className="h-4 w-4 rotate-90" />
+      </div>
+      {/* Step 2 */}
+      <div className="flex items-start gap-2">
+        <div className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-indigo-400 text-xs font-bold text-white">2</div>
+        <div className="flex-1">
+          <div className="h-1.5 w-24 rounded bg-indigo-300/60" />
+          <div className="mt-1 h-1 w-20 rounded bg-indigo-200/40" />
+        </div>
+      </div>
+      {/* Arrow */}
+      <div className="flex justify-center text-indigo-400/50">
+        <ArrowRight className="h-4 w-4 rotate-90" />
+      </div>
+      {/* Step 3 */}
+      <div className="flex items-start gap-2">
+        <div className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-indigo-500 text-xs font-bold text-white">
+          <CheckCircle2 className="h-3 w-3" />
+        </div>
+        <div className="flex-1">
+          <div className="h-1.5 w-20 rounded bg-indigo-300/60" />
+          <div className="mt-1 h-1 w-14 rounded bg-indigo-200/40" />
+        </div>
+      </div>
+    </div>
+  )
+}
+
+function PaymentWorkflow() {
+  return (
+    <div className="space-y-2.5 p-3">
+      {/* Form Section */}
+      <div className="space-y-1.5 rounded bg-white/20 p-2">
+        <div className="h-2 w-16 rounded bg-purple-300/70" />
+        <div className="h-1.5 w-32 rounded bg-purple-200/50" />
+      </div>
+      {/* Amount Input */}
+      <div className="space-y-1">
+        <div className="flex items-center gap-1.5">
+          <CreditCard className="h-3 w-3 text-purple-300" />
+          <div className="h-1.5 w-20 rounded bg-purple-300/70" />
+        </div>
+      </div>
+      {/* Buttons */}
+      <div className="flex gap-1.5 pt-1">
+        <div className="h-2 flex-1 rounded bg-purple-400/80" />
+        <div className="h-2 w-12 rounded bg-purple-300/60" />
+      </div>
+      {/* Confirmation */}
+      <div className="flex items-center gap-2 rounded bg-purple-400/30 px-2 py-1.5">
+        <CheckCircle2 className="h-3 w-3 text-purple-400" />
+        <div className="h-1 flex-1 rounded bg-purple-300/70" />
+      </div>
+    </div>
+  )
+}
+
+function CollaborationWorkflow() {
+  return (
+    <div className="space-y-2 p-3">
+      {/* User Avatars */}
+      <div className="flex items-center -space-x-2 pb-1">
+        {[...Array(3)].map((_, i) => (
+          <div
+            key={i}
+            className="h-5 w-5 rounded-full border-2 border-white bg-gradient-to-br from-teal-400 to-emerald-500"
+          />
+        ))}
+        <div className="ml-1 h-1.5 w-12 rounded bg-emerald-300/60" />
+      </div>
+      {/* Shared Items */}
+      <div className="space-y-1">
+        <div className="flex items-center gap-1.5">
+          <Lock className="h-3 w-3 text-emerald-400" />
+          <div className="h-1.5 w-20 rounded bg-emerald-300/60" />
+        </div>
+      </div>
+      {/* Activity */}
+      <div className="space-y-1 text-[10px] text-emerald-200/70">
+        <div className="flex justify-between">
+          <div className="h-1 w-16 rounded bg-emerald-300/50" />
+          <div className="h-1 w-12 rounded bg-emerald-200/40" />
+        </div>
+        <div className="flex justify-between">
+          <div className="h-1 w-20 rounded bg-emerald-300/50" />
+          <div className="h-1 w-10 rounded bg-emerald-200/40" />
+        </div>
+      </div>
+      {/* User indicator */}
+      <div className="flex items-center gap-1.5 rounded bg-emerald-400/20 px-2 py-1.5">
+        <Users className="h-3 w-3 text-emerald-300" />
+        <div className="h-1 flex-1 rounded bg-emerald-300/70" />
+      </div>
+    </div>
+  )
+}
 
 export function InteractiveProductPreview() {
   const containerRef = useRef<HTMLDivElement>(null)
@@ -15,16 +126,22 @@ export function InteractiveProductPreview() {
       title: 'Lead Onboarding Flow',
       description: 'User journey through the initial setup',
       gradient: 'from-indigo-500 to-violet-600',
+      component: OnboardingWorkflow,
+      icon: UserPlus,
     },
     violet: {
       title: 'Payment Integration',
       description: 'Complete billing workflow with UI interactions',
       gradient: 'from-violet-500 to-purple-600',
+      component: PaymentWorkflow,
+      icon: CreditCard,
     },
     emerald: {
       title: 'Team Collaboration',
       description: 'Multi-user workflow with shared features',
       gradient: 'from-emerald-500 to-teal-600',
+      component: CollaborationWorkflow,
+      icon: Users,
     },
   }
 
@@ -188,51 +305,98 @@ export function InteractiveProductPreview() {
 
           {/* Interactive cards grid */}
           <div className="grid grid-cols-3 gap-3">
-            {(['indigo', 'violet', 'emerald'] as const).map((tone) => (
-              <button
-                key={tone}
-                data-card={tone}
-                onClick={() => {
-                  setActiveCard(tone)
-                  setIsAutoPlay(false)
-                }}
-                className={cn(
-                  'group relative overflow-hidden rounded-xl border-2 transition-all duration-300',
-                  activeCard === tone
-                    ? 'border-brand-500 shadow-lg scale-105'
-                    : 'border-ink-200 hover:border-brand-300 hover:scale-102',
-                )}
-              >
-                <div
-                  className={cn(
-                    'aspect-[16/10] bg-gradient-to-br transition-all duration-300',
-                    cardConfig[tone as CardState].gradient,
-                  )}
-                />
-                <div className="space-y-1.5 bg-white p-2.5 transition-all duration-300 group-hover:bg-ink-50">
-                  <div className="h-2 w-3/4 rounded-full bg-ink-300" />
-                  <div className="h-1.5 w-1/2 rounded-full bg-ink-200" />
-                </div>
+            {(['indigo', 'violet', 'emerald'] as const).map((tone) => {
+              const config = cardConfig[tone as CardState]
+              const WorkflowComponent = config.component
+              const IconComponent = config.icon
 
-                {/* Active indicator */}
-                {activeCard === tone && (
-                  <div className="absolute inset-0 rounded-xl border-2 border-brand-400 ring-2 ring-brand-200 ring-offset-2" />
-                )}
-              </button>
-            ))}
+              return (
+                <button
+                  key={tone}
+                  data-card={tone}
+                  onClick={() => {
+                    setActiveCard(tone)
+                    setIsAutoPlay(false)
+                  }}
+                  className={cn(
+                    'group relative overflow-hidden rounded-xl border-2 transition-all duration-300',
+                    activeCard === tone
+                      ? 'border-brand-500 shadow-lg scale-105'
+                      : 'border-ink-200 hover:border-brand-300 hover:scale-102',
+                  )}
+                >
+                  {/* Workflow visualization background */}
+                  <div
+                    className={cn(
+                      'aspect-[16/10] bg-gradient-to-br transition-all duration-300 relative overflow-hidden',
+                      config.gradient,
+                    )}
+                  >
+                    {/* Workflow content */}
+                    <WorkflowComponent />
+
+                    {/* Processing indicator */}
+                    <div className="absolute bottom-1 right-1 flex h-2 w-2 items-center justify-center">
+                      <div className="h-1.5 w-1.5 rounded-full bg-white/80 animate-pulse" />
+                    </div>
+                  </div>
+
+                  {/* Card footer */}
+                  <div className="space-y-1.5 bg-white p-2.5 transition-all duration-300 group-hover:bg-ink-50">
+                    <div className="flex items-center gap-1.5">
+                      <IconComponent className="h-3 w-3 text-ink-500" />
+                      <div className="h-2 flex-1 rounded-full bg-ink-300" />
+                    </div>
+                    <div className="h-1.5 w-3/4 rounded-full bg-ink-200" />
+                  </div>
+
+                  {/* Active indicator */}
+                  {activeCard === tone && (
+                    <div className="absolute inset-0 rounded-xl border-2 border-brand-400 ring-2 ring-brand-200 ring-offset-2" />
+                  )}
+                </button>
+              )
+            })}
           </div>
 
           {/* Card details panel */}
-          <div className="rounded-xl border border-ink-200 bg-gradient-to-br from-white to-ink-50 p-3 transition-all duration-300">
+          <div className="rounded-xl border border-ink-200 bg-gradient-to-br from-white to-ink-50 p-4 transition-all duration-300">
             <div data-card-content>
-              <h4 className="mb-1 text-sm font-semibold text-ink-900">{currentConfig.title}</h4>
-              <p className="text-xs text-ink-500">{currentConfig.description}</p>
-              <div className="mt-2 flex gap-1.5">
-                <button className="rounded px-2 py-1 text-xs font-medium text-brand-600 hover:bg-brand-50 transition-colors">
-                  View
+              <div className="mb-3 flex items-center gap-2">
+                {(() => {
+                  const IconComponent = currentConfig.icon
+                  return (
+                    <>
+                      <div className={cn('flex h-8 w-8 items-center justify-center rounded-lg text-white', `bg-gradient-to-br ${currentConfig.gradient}`)}>
+                        <IconComponent className="h-4 w-4" />
+                      </div>
+                      <div className="flex-1">
+                        <h4 className="text-sm font-semibold text-ink-900">{currentConfig.title}</h4>
+                        <p className="text-xs text-ink-500">{currentConfig.description}</p>
+                      </div>
+                    </>
+                  )
+                })()}
+              </div>
+
+              {/* Mini workflow preview */}
+              <div className={cn('mb-3 rounded-lg bg-gradient-to-br p-2', `${currentConfig.gradient} text-white text-opacity-90`)}>
+                {(() => {
+                  const WorkflowComponent = currentConfig.component
+                  return (
+                    <div className="text-xs">
+                      <WorkflowComponent />
+                    </div>
+                  )
+                })()}
+              </div>
+
+              <div className="flex gap-1.5">
+                <button className="flex-1 rounded px-2 py-1.5 text-xs font-medium text-brand-600 hover:bg-brand-50 transition-colors border border-brand-200">
+                  View Flow
                 </button>
-                <button className="rounded px-2 py-1 text-xs font-medium text-ink-500 hover:bg-ink-100 transition-colors">
-                  Share
+                <button className="flex-1 rounded px-2 py-1.5 text-xs font-medium text-ink-500 hover:bg-ink-100 transition-colors border border-ink-200">
+                  Export
                 </button>
               </div>
             </div>
