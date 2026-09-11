@@ -12,15 +12,15 @@ import {
   ScrollText,
   ShieldCheck,
   Sparkles,
-  Wand2,
 } from 'lucide-react'
 import { Logo } from '@/components/Logo'
+import { InteractiveProductPreview } from '@/components/InteractiveProductPreview'
+import { WorkflowDemo } from '@/components/WorkflowDemo'
 import { buttonStyles } from '@/components/ui/Button'
 import { StatCard } from '@/components/StatCard'
 import { useProjects } from '@/context/ProjectsContext'
 import { useMagnetic, useParallax, useReveal } from '@/hooks/useAnimations'
 import { EASE, gsap, prefersReducedMotion, useGSAP } from '@/lib/gsap'
-import { cn } from '@/lib/utils'
 
 const FEATURES = [
   {
@@ -41,14 +41,6 @@ const FEATURES = [
     body: 'Ranked workflow, narration and captured frames compose into a finished MP4 — ready to embed in onboarding, docs or a sales follow-up.',
     points: ['1080p render', 'Auto captions', 'Download or share link'],
   },
-]
-
-const PIPELINE = [
-  { icon: Compass, label: 'Explore', detail: 'Crawl the app' },
-  { icon: Wand2, label: 'Discover', detail: 'Cluster journeys' },
-  { icon: ListOrdered, label: 'Rank', detail: 'Score by value' },
-  { icon: ScrollText, label: 'Script', detail: 'Ground each claim' },
-  { icon: Film, label: 'Compose', detail: 'Render the video' },
 ]
 
 export function Landing() {
@@ -188,77 +180,9 @@ export function Landing() {
             </span>
           </p>
 
-          {/* Product preview */}
+          {/* Interactive Product Preview */}
           <div data-hero="visual" className="relative mx-auto mt-14 max-w-5xl [perspective:1200px]">
-            <div className="overflow-hidden rounded-2xl border border-ink-200/90 bg-white shadow-[0_40px_90px_-30px_rgba(16,24,40,.35)]">
-              <div className="flex items-center gap-2 border-b border-ink-200/80 bg-ink-50/80 px-4 py-3">
-                <span className="h-2.5 w-2.5 rounded-full bg-rose-300" />
-                <span className="h-2.5 w-2.5 rounded-full bg-amber-300" />
-                <span className="h-2.5 w-2.5 rounded-full bg-emerald-300" />
-                <span className="mx-auto flex items-center gap-2 rounded-lg border border-ink-200 bg-white px-3 py-1 text-[11px] text-ink-400">
-                  <Link2 className="h-3 w-3" />
-                  app.explainerai.dev/dashboard
-                </span>
-              </div>
-
-              <div className="grid gap-4 p-5 text-left sm:grid-cols-[180px_1fr]">
-                <div className="hidden space-y-2 sm:block">
-                  <div className="h-9 rounded-xl bg-brand-600" />
-                  {['All projects', 'Completed', 'Processing'].map((row, i) => (
-                    <div
-                      key={row}
-                      className={cn(
-                        'flex items-center gap-2 rounded-lg px-2.5 py-2 text-[12px] font-medium',
-                        i === 0 ? 'bg-brand-50 text-brand-700' : 'text-ink-400',
-                      )}
-                    >
-                      <span className={cn('h-2 w-2 rounded-full', i === 0 ? 'bg-brand-500' : 'bg-ink-300')} />
-                      {row}
-                    </div>
-                  ))}
-                  <div className="mt-4 space-y-2 rounded-xl border border-ink-200 p-2.5">
-                    <div className="h-1.5 w-16 rounded-full bg-ink-200" />
-                    <div className="h-1.5 w-full rounded-full bg-ink-100">
-                      <div className="h-full w-2/3 rounded-full bg-brand-500" />
-                    </div>
-                  </div>
-                </div>
-
-                <div className="space-y-3">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <div className="h-3 w-24 rounded-full bg-ink-800" />
-                      <div className="mt-2 h-2 w-40 rounded-full bg-ink-200" />
-                    </div>
-                    <div className="h-8 w-28 rounded-lg bg-brand-600" />
-                  </div>
-                  <div className="grid grid-cols-3 gap-3">
-                    {['indigo', 'violet', 'emerald'].map((tone, i) => (
-                      <div key={tone} className="overflow-hidden rounded-xl border border-ink-200">
-                        <div
-                          className={cn(
-                            'aspect-[16/10] bg-gradient-to-br',
-                            i === 0 ? 'from-indigo-500 to-violet-600' : i === 1 ? 'from-violet-500 to-purple-600' : 'from-emerald-500 to-teal-600',
-                          )}
-                        />
-                        <div className="space-y-1.5 p-2.5">
-                          <div className="h-2 w-3/4 rounded-full bg-ink-300" />
-                          <div className="h-1.5 w-1/2 rounded-full bg-ink-200" />
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                  <div className="rounded-xl border border-ink-200 p-3">
-                    <div className="mb-2 h-2 w-28 rounded-full bg-ink-300" />
-                    <div className="space-y-1.5">
-                      <div className="h-1.5 w-full rounded-full bg-ink-100" />
-                      <div className="h-1.5 w-5/6 rounded-full bg-ink-100" />
-                      <div className="h-1.5 w-2/3 rounded-full bg-brand-200" />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <InteractiveProductPreview />
 
             {/* Floating proof chips */}
             <div
@@ -290,7 +214,7 @@ export function Landing() {
         </div>
       </section>
 
-      {/* Pipeline */}
+      {/* Pipeline - Animated Workflow Demo */}
       <section className="border-y border-ink-200/70 bg-ink-50/60">
         <div className="mx-auto max-w-6xl px-5 py-14">
           <div data-reveal className="text-center">
@@ -298,30 +222,8 @@ export function Landing() {
             <h2 className="mt-2 text-[26px] font-bold tracking-[-0.03em] text-ink-900">One URL in, one explainer out</h2>
           </div>
 
-          <div className="relative mt-10 grid gap-4 sm:grid-cols-3 lg:grid-cols-5">
-            {PIPELINE.map((stage, i) => {
-              const Icon = stage.icon
-              return (
-                <div key={stage.label} data-reveal className="relative">
-                  {i < PIPELINE.length - 1 && (
-                    <span
-                      className="absolute left-[calc(50%+34px)] right-[calc(-50%+34px)] top-7 hidden h-px bg-gradient-to-r from-ink-300 to-transparent lg:block"
-                      aria-hidden
-                    />
-                  )}
-                  <div className="flex flex-col items-center text-center">
-                    <span className="relative flex h-14 w-14 items-center justify-center rounded-2xl border border-ink-200 bg-white text-brand-600 shadow-card">
-                      <Icon className="h-6 w-6" />
-                      <span className="absolute -bottom-1.5 -right-1.5 flex h-5 w-5 items-center justify-center rounded-full bg-ink-900 font-mono text-[10px] font-bold text-white">
-                        {i + 1}
-                      </span>
-                    </span>
-                    <h3 className="mt-3.5 text-[14.5px] font-semibold text-ink-900">{stage.label}</h3>
-                    <p className="mt-0.5 text-[12.5px] text-ink-400">{stage.detail}</p>
-                  </div>
-                </div>
-              )
-            })}
+          <div data-reveal className="mt-10">
+            <WorkflowDemo />
           </div>
         </div>
       </section>
